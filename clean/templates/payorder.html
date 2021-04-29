@@ -1,0 +1,112 @@
+{% include 'header.html' %}
+
+{% block content %}
+
+<style>
+.address{
+    border: 1px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 15px;
+}
+input[type="number"]{
+    background-color: rgba(0, 0, 0, 0.075);
+    border-color: rgba(0, 0, 0, 0.25);
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    border-radius: 4px;
+    border: rgba(0, 0, 0, 0.25) solid 1px;
+    color: inherit;
+    height: 3.25rem;
+    display: block;
+    outline: 0;
+    padding: 0 1rem;
+    text-decoration: none;
+    width: 100%;
+    box-shadow: none;
+}
+</style>
+<style>
+#body{
+    margin-left: 2%;
+    margin-right: 2%;
+    text-align: center;
+}
+#body img{
+    width: 20%
+}
+</style>
+<section id="body">
+{% if order.complete == True %}
+
+<img src="https://cdn.lewd.host/qprdfk4K.png" alt="Complete">
+
+{% else %}
+
+<img src="https://cdn.lewd.host/X4oOLgQ8.png" alt="Not Complete">
+
+{% endif %} <br>
+<style>
+.grid{
+    text-align: left;
+    padding: 15px;
+    border: 1px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+</style>
+<div class="grid">
+    <strong>Order ID: </strong>{{order.order_id}} <br>
+    <strong>Order Date: </strong>{{order.date}} <br>
+    <strong>Order Email: </strong>{{order.email}} <br>
+    {% if order.client is None %}
+    <strong>Client:</strong> Guest
+    {% else %}
+    <strong>Client: </strong>{{order.client}}
+    {% endif %} <br>
+    <strong>Address: </strong>{{order.address}} <br>
+    <strong>Total: </strong>${{order.total}} <br>
+    <strong>Status: </strong>{{order.shipped}} <br>
+</div>
+    
+<style>
+.products{
+    border: 1px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 15px;
+} 
+</style>
+<div class="products">
+    <strong><h4 style="text-transform: capitalize;">Products:</h4></strong>
+    {% for p in products %}
+    <strong>Title: </strong>{{p.product.title}} <strong>|</strong> {{p.quantity}} Qty. <br>
+    {% endfor %}
+</div>
+<div class="address">
+    <h5>Only US residents.</h5>
+    <form action="" method='POST'>
+        {% csrf_token %}
+        <label for="full_name">Full Name:</label>
+        <input type="text" name="full_name" id="full_name" required>
+        {% if not user.is_authenticated %}
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" required>
+        {% endif %}
+        {{form}} <br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+{% endblock %}
+</section>

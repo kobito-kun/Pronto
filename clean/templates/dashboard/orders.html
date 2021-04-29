@@ -1,0 +1,32 @@
+{% include 'header.html' %}
+{% load static %}
+{% block content %}
+<br>
+<style>
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr 1fr;
+}
+@media only screen and (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+</style>
+
+<center class="grid">
+    <div></div>
+    <div>
+        {% for c in completed %}    
+        <strong>Completed: </strong><a href="/dashboard/viewOrder/{{c.id}}">{{c}}</a><br>
+        {% endfor %}
+    </div>
+    <div>
+        {% for o in order %}
+        <strong>Order: </strong><a href="/dashboard/viewOrder/{{o.id}}">{{o}}</a><br>
+        {% endfor %}
+    </div>
+    <div></div>
+</center>
+
+{% endblock %}

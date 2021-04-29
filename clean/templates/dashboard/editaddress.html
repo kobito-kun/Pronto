@@ -1,0 +1,12 @@
+{% include 'header.html' %}
+{% block content %}
+
+<form action="" method='POST'>
+    {% csrf_token %}
+    {{form}} <br>
+    <input type="submit" value="Change">
+</form>
+
+<a style="display:flex" href="/dashboard/deleteaddress/{{address.id}}"><button>Delete</button></a>
+
+{% endblock %}

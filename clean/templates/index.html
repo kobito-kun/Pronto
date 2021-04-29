@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+{% block content %}
+
+<div class="flex items-center flex-col justify-center min-h-screen text-center">
+	<h2 class="lg:text-4xl text-2xl font-extrabold">🔥Pronto</h2>
+	<h3 class="lg:text-6xl text-4xl font-bold mb-2">Selling <span class="text-blue-700">high quality</span> products at a <span class="text-blue-700">cheap</span> price. <br> <span class="text-blue-700">Rapid</span> delivery and <span class="text-blue-700">24/7</span> customer support.</h3>
+	<span class="lg:text-lg text-md text-green-500 animate-pulse font-bold">Your buying experience, simplified.</span>
+	<div class="p-4">
+		<a href="/products">
+			<button class="px-8 py-4 focus:outline-none bg-blue-700 rounded-lg shadow text-green-100 focus:bg-blue-500 font-bold hover:scale-110 transform duration-300 hover:text-purple-400 ease-in-out m-2">PRODUCTS</button>
+		</a>
+		<a href="/aboutus">
+			<button class="px-8 py-4 focus:outline-none bg-blue-700 rounded-lg shadow text-green-100 focus:bg-blue-500 font-bold hover:scale-110 transform duration-300 hover:text-purple-400 ease-in-out m-2">ABOUT US</button>
+		</a>
+	</div>
+</div>
+	
+{% endblock %}

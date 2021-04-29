@@ -1,0 +1,16 @@
+{% include 'header.html' %}
+{% load static %}
+{% block content %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input type="number" name="phone" placeholder="Phone" required>
+    <input type="text" name="city" placeholder="City" required>
+    <input type="text" name="street_1" placeholder="Street 1" required>
+    <input type="text" name="street_2" placeholder="Street 2" required>
+    <input type="number" name="postal_code" placeholder="Postal Code / Zip" required>
+
+    <input type="submit" value="Add">
+</form>
+
+{% endblock %}

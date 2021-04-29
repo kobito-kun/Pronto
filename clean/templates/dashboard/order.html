@@ -1,0 +1,22 @@
+{% include 'header.html' %}
+{% load static %}
+{% block content %}
+
+<h3>Product</h3>
+{% for p in products %}
+{{p.product.title}} | {{p.quantity}} Qty. <br>
+{% endfor %}<br>
+<h3>Order ID</h3>
+{{order.order_id}} <br>
+<h3>Date</h3>
+{{order.date}} <br>
+<h3>Email</h3>
+{{order.email}} <br>
+<h3>Client</h3>
+{{order.client}} <br>
+<h3>Address</h3>
+{{order.address}} <br>
+
+<a href="/payOrder/{{order.order_id}}"><button>Pay Here</button></a>
+
+{% endblock %}

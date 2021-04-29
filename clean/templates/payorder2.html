@@ -1,0 +1,72 @@
+{% include 'header.html' %}
+
+{% block content %}
+
+<style>
+#body{
+    margin-left: 2%;
+    margin-right: 2%;
+    text-align: center;
+}
+#body img{
+    width: 20%;
+}
+</style>
+<section id="body">
+
+{% if order.complete == True %}
+
+<img src="https://cdn.lewd.host/qprdfk4K.png" alt="Complete">
+
+{% else %}
+
+<img src="https://cdn.lewd.host/X4oOLgQ8.png" alt="Not Complete"><br><br>
+{% if order.complete == False %}
+<a href="/client/my-api/create-payment/{{order.order_id}}"><button>Pay order</button></a>
+{% endif %}
+{% endif %} <br>
+<style>
+.grid{
+    text-align: left;
+    padding: 15px;
+    border: 1px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+</style>
+<div class="grid">
+    <strong>Order ID: </strong>{{order.order_id}} <br>
+    <strong>Order Date: </strong>{{order.date}} <br>
+    <strong>Order Email: </strong>{{order.email}} <br>
+    {% if order.client is None %}
+    <strong>Client:</strong> {{order.name}}
+    {% else %}
+    <strong>Client: </strong>{{order.client}}
+    {% endif %} <br>
+    <strong>Address: </strong>{{order.address}} <br>
+    <strong>Total: </strong>${{order.total}} <br>
+    <strong>Status: </strong>{{order.shipped}} <br>
+</div>
+    
+<style>
+.products{
+    border: 1px solid black;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding: 15px;
+} 
+</style>
+<div class="products">
+    <strong><h4 style="text-transform: capitalize;">Products:</h4></strong>
+    {% for p in products %}
+    <strong>Title: </strong>{{p.product.title}} <strong>|</strong> {{p.quantity}} Qty. <br>
+    {% endfor %}
+</div>
+{% endblock %}
+</section>
