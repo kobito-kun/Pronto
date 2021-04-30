@@ -1,19 +1,48 @@
 {% include 'header.html' %}
 {% block content %}
 
-<h1 class="text-4xl font-bold text-center">Products</h1>
+<style>
+#glass{
+background: rgba( 255, 255, 255, 0.15 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 3.0px );
+-webkit-backdrop-filter: blur( 3.0px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );  
+}  
+</style>
+
+<div class="w-screen h-screen top-0" id="glass" style="display:none; position: fixed"></div>
+<div style="position: fixed; top:0; right:0; display: none;" class="font-bold text-2xl bg-blue-700 px-4 py-2 rounded-lg m-4 hover:scale-105 hover:bg-blue-600 cursor-pointer duration-300 transform text-green-100" id="close" onclick="closeContainer()">Close</div>
+<h1 class="text-6xl font-bold text-center">Products</h1>
 <div class="flex flex-wrap items-center justify-center">
     {% for p in products %} 
-      <div onclick="displayProductInfo()" class="w-80 cursor-pointer h-68 bg-green-200 m-4 p-4 rounded-lg shadow-lg hover:bg-green-300 border-2 border-green-300 ease-in-out duration-300">
+      <div id="product{{p.id}}" onclick="showDescription({{p.id}})" class="w-80 cursor-pointer h-68 bg-green-200 m-4 p-4 rounded-lg shadow-lg hover:bg-green-300 border-2 border-green-300 ease-in-out duration-300">
         <img loading="lazy" src="{{p.image}}" class="rounded-lg shadow-lg" alt="{{p.title}}">
         <h3 class="font-extrabold my-2">{{p.title}}</h3>
+        <p style="display: none; max-height: 200px; overflow-y: scroll; overflow-x: hidden;" class="p-2" id="description{{p.id}}" >{{p.description}}</p>
         <a href="/" class="float-left px-4 p-2 bg-blue-600 rounded-lg shadow text-green-100 font-bold hover:bg-blue-500">PURCHASE</a>
         <a class="float-right px-4 p-2 bg-blue-400 rounded-lg shadow cursor-default font-bold text-green-100">${{p.price}}</a>
       </div>
     {% endfor %}
 </div>
-
 <script>
+var currentId
+const showDescription = id => {
+  $(`#description${id}`).slideToggle( "slow" );
+  currentId = id
+  var element = document.getElementById(`product${id}`).style
+  element.position = "fixed";
+  element.top = "3%";
+  document.getElementById("glass").style.display = "block"
+  document.getElementById("close").style.display = "block"
+}
+const closeContainer = () => {
+  $(`#description${currentId}`).slideUp( "slow" );
+  var element = document.getElementById(`product${currentId}`).style
+  element.position = "static";
+  document.getElementById("glass").style.display = "none"
+  document.getElementById("close").style.display = "none"
+}
 </script>
-
 {% endblock %}
