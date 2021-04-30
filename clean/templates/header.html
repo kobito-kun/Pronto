@@ -23,7 +23,8 @@
 			</div>
 			<div class="text-2xl font-black lg:block hidden">
 				{% if user.is_authenticated %}
-					<a class="bg-blue-500 px-4 py-2 rounded-lg text-green-100 shadow" href="">Dashboard</a>
+					<a class="bg-blue-500 px-4 py-2 rounded-lg text-green-100 shadow hover:bg-green-500 duration-300" href="/logout">Logout</a>
+					<a class="bg-blue-500 px-4 py-2 rounded-lg text-green-100 shadow hover:bg-green-500 duration-300" href="/dashboard">Dashboard</a>
 				{% else %}
 				<a class="bg-blue-500 px-4 py-2 mr-2 rounded-lg text-green-100 shadow hover:bg-green-500 duration-300" href="/login">Login</a>
 				<a class="bg-blue-500 px-4 py-2 rounded-lg text-green-100 shadow hover:bg-green-500 duration-300" href="/signup">Sign Up</a>

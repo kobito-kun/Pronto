@@ -61,7 +61,6 @@ def viewProducts(request):
   return render(request, 'products.html', context)
 
 def createOrder(request, qty, id):
-  qty = qty
   product = Product.objects.get(id=id)
   total = float(qty) * float(product.price)
   order = Order.objects.create(
@@ -69,12 +68,29 @@ def createOrder(request, qty, id):
     product = product,
     total = total,
   )
+  if request.user.is_authenticated:
+    client = Client.objects.get(user__username=request.user)
+    order.name = str(client.user)
+    order.email = str(client.email)
+    order.client = client
+    order.save()
   return redirect(f'/payOrder/{order.order_id}')
 
 def payOrder(request, order_id):
   order = Order.objects.get(order_id=order_id)
+  quantity = int(float(order.total) / float(order.product.price))
+  
+  if request.method == 'POST':
+    user = request.POST.get("username")
+    email = request.POST.get("email")
+    order.name = user
+    order.email = email
+    order.save()
+    return redirect(f'/payOrder/{order.order_id}')
+
   context = {
     'order':order,
+    'quantity': quantity
   }
   return render(request, 'payorder.html', context)
 
