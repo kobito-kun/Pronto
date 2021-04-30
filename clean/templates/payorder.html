@@ -14,7 +14,11 @@
         <input id="quantity" type="text" class="w-28 p-2 rounded-lg shadow focus:outline-none text-blue-700 font-bold" disabled value="📦 {{ quantity }}">
         <a class="px-4 p-2 bg-blue-400 rounded-lg shadow cursor-default font-bold text-green-100">${{order.product.price}}</a>
       </div>
-      <button class="w-full bg-blue-500 font-bold text-2xl text-green-100 my-2 px-4 py-2 rounded-lg shadow hover:bg-blue-400 focus:outline-none duration-300">PAY NOW</button>
+      {% if order.complete %}
+      <button class="w-full bg-blue-400 cursor-not-allowed font-bold text-2xl text-green-100 my-2 px-4 py-2 rounded-lg shadow focus:outline-none uppercase duration-300">{{order.shipped}}</button>
+      {% else %}
+      <button onclick="redirectPayment()" class="w-full bg-blue-500 font-bold text-2xl text-green-100 my-2 px-4 py-2 rounded-lg shadow hover:bg-blue-400 focus:outline-none duration-300">PAY NOW</button>
+      {% endif %}
     </div>    
   </div>
     {% else %}
@@ -28,4 +32,9 @@
   {% endif %}
 </div>
 
+<script>
+const redirectPayment = () => {
+  window.location.href = "/my-api/create-payment/{{order.order_id}}"
+}
+</script>
 {% endblock %}

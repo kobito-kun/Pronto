@@ -1,11 +1,11 @@
 
 
-<form id="form" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<form id="form" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
     <input type="hidden" name="business" value="{{ppe}}"/>
     <input type="hidden" name="description" value="Online Purchase"/>
-    <input type="hidden" name="notify_url" value="{{domain}}my-api/execute-payment/elsemail={{order.email}}&order_id={{order.order_id}}&id={{order.id}}"/>
-    <input type="hidden" name="cancel_return" value="{{domain}}payOrder/{{order.order_id}}" />
-    <input type="hidden" name="return" value="{{domain}}payOrder/{{order.order_id}}"/>
+    <input type="hidden" name="notify_url" value="{{domain}}/my-api/execute-payment/elsemail={{order.email}}&order_id={{order.order_id}}&id={{order.id}}"/>
+    <input type="hidden" name="cancel_return" value="{{domain}}/payOrder/{{order.order_id}}" />
+    <input type="hidden" name="return" value="{{domain}}/payOrder/{{order.order_id}}"/>
     <input type="hidden" name="rm" value="2"/> <input type="hidden" name="lc" value="1"/>
     <input type="hidden" name="no_note" value="1"/> <input type="hidden" name="currency_code" value="USD"/>
     <input type="hidden" name="page_style" value="paypal"/> <input type="hidden" name="charset" value="utf-8"/>
@@ -15,5 +15,5 @@
     <input type="hidden" name="amount" value="{{order.total}}"/>
     <input type="hidden" name="invoice" value='{{order.order_id}}'/>
     <script type="text/javascript">
-        document.getElementById('form').submit();
+        //document.getElementById('form').submit();
     </script>

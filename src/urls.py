@@ -18,11 +18,8 @@ urlpatterns = [
     path('payOrder/<str:order_id>', csrf_exempt(payOrder)),
     path('createOrder/qty=<int:qty>/id=<int:id>', createOrder),
 
-    path('adminViewOrder/<str:order_id>', adminViewOrderProgress),
-
     path('dashboard/', viewDashboard, name="dashboard"),
     path('dashboard/orders', viewOrders, name="orders"),
-    path('dashboard/viewOrder/<int:order_id>', viewOrder),
 
     path('my-api/execute-payment/elsemail=<str:email>&order_id=<str:order_id>&id=<str:id>',
          csrf_exempt(executepayment), name='executepayment'),

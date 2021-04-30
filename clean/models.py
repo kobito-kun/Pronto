@@ -40,4 +40,5 @@ class Order(models.Model):
         return str(self.order_id)
 
     class Meta:
-        get_latest_by = 'date'
+        #get_latest_by = 'date'
+        ordering = ('-date',)
