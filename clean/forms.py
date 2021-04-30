@@ -8,8 +8,3 @@ class CreateUserForm(UserCreationForm):
   class Meta:
     model = User
     fields = ['username', 'email', 'password1', 'password2']
-
-class AddressForm(ModelForm):
-  class Meta:
-    model = Address
-    fields = ['phone', 'city', 'street_1', 'street_2', 'postal_code']

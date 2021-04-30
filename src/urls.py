@@ -16,6 +16,8 @@ urlpatterns = [
     path('logout/', Logout, name='logout'),
     path('products/', viewProducts, name="products"),
     path('payOrder/<str:order_id>', csrf_exempt(payOrder)),
+    path('createOrder/qty=<int:qty>/id=<int:id>', createOrder),
+
     path('adminViewOrder/<str:order_id>', adminViewOrderProgress),
 
     path('dashboard/', viewDashboard, name="dashboard"),

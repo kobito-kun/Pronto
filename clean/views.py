@@ -60,15 +60,23 @@ def viewProducts(request):
   }
   return render(request, 'products.html', context)
 
-def makeOrder(request, product_id):
-  if request.method == 'POST':
-    product = Product.objects.get(id=id)
-    Order.objects.create(
-      ''
-    )
+def createOrder(request, qty, id):
+  qty = qty
+  product = Product.objects.get(id=id)
+  total = float(qty) * float(product.price)
+  order = Order.objects.create(
+    order_id = uuid.uuid4(),
+    product = product,
+    total = total,
+  )
+  return redirect(f'/payOrder/{order.order_id}')
 
 def payOrder(request, order_id):
-  return render(request, 'payorder.html')
+  order = Order.objects.get(order_id=order_id)
+  context = {
+    'order':order,
+  }
+  return render(request, 'payorder.html', context)
 
 @login_required(login_url='login')
 def viewDashboard(request):
