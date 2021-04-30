@@ -1,4 +1,2 @@
-smtp
 Django
-uuid
 whitenoise

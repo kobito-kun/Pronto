@@ -12,7 +12,21 @@
 		<link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap" rel="stylesheet">		
 	</head>
 	<body class="bg-green-100" style="font-family: 'PT Sans Narrow', sans-serif;"> 
-    {% block content %}
+    	<nav class="flex justify-between p-4 sticky top-0 bg-green-100 shadow-lg mb-4">
+			<div class="text-2xl font-black">
+				<a href="/">Pronto</a>
+			</div>
+			<div class="text-2xl font-black lg:block hidden">
+				<a class="mx-4" href="/products">Products</a>
+				{% if user.is_authenticated %}
+					<a class="bg-blue-500 px-4 py-2 rounded-lg text-green-100 shadow" href="">Dashboard</a>
+				{% else %}
+				<a class="bg-blue-500 px-4 py-2 mr-2 rounded-lg text-green-100 shadow" href="/login">Login</a>
+				<a class="bg-blue-500 px-4 py-2 rounded-lg text-green-100 shadow" href="/signup">Sign Up</a>
+				{% endif %}
+			</div>
+		</nav>
+		{% block content %}
 		{% endblock %}
 	</body>
 </html>

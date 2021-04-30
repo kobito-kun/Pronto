@@ -55,83 +55,20 @@ def viewMain(request):
 def viewProducts(request):
   products = Product.objects.all()
 
-  if request.method == 'POST':
-    order_id = uuid.uuid4()
-    cartItemId = request.POST.getlist("item-id")
-    total = request.POST.get("total")
-    print(total)
-    print("total above")
-
-    if float(total) == 0 or float(total) < 0:
-      print("Cart has nothing")
-      return redirect('products')
-    else:
-      pass
-
-    order = Order.objects.create(order_id=order_id, total=total)
-    if request.user.is_authenticated:
-      client = Client.objects.get(user=request.user)
-      email = client.email
-      order.client = client
-      order.email = email
-      order.save()
-
-    for item in cartItemId:
-      item = item.split(",")
-      prod_id = item[0]
-      quantity = item[1]
-      product = Product.objects.get(id=prod_id)
-      OrderItems.objects.create(product=product, order=order, quantity=quantity)
-    print("Created an order.")
-    return redirect("/client/payOrder/" + str(order_id))
-
   context = {
       'products': products
   }
   return render(request, 'products.html', context)
 
+def makeOrder(request, product_id):
+  if request.method == 'POST':
+    product = Product.objects.get(id=id)
+    Order.objects.create(
+      ''
+    )
 
 def payOrder(request, order_id):
-  order = Order.objects.get(order_id=order_id)
-  products = OrderItems.objects.filter(order__order_id=order_id)
-  form = AddressForm()
-  print(request.user)
-  if str(request.user) == str(order.client):
-    print("Passed #1")
-    pass
-  elif str(request.user) == "AnonymousUser" and order.client == None:
-    print("Passed #2")
-    pass
-  else:
-    return HttpResponse("Looks like the creator of this order isnt you huh")
-
-  if order.address != None:
-    print(order.name)
-    return render(request, 'payorder2.html', {'order': order, 'products':products})
-
-  if request.method == 'POST':
-    print("Post request Detected")
-    form = AddressForm(request.POST)
-    address = form.save()
-    if str(request.user) != 'AnonymousUser':
-      name = request.POST.get('full_name')
-      order.address = address
-      order.name = name
-    else:
-      email = request.POST.get('email')
-      name = request.POST.get('full_name')
-      order.email = email
-      order.address = address
-      order.name = name
-    order.save()
-    return render(request, 'payorder2.html', {'order': order, 'products':products})
-
-  context = {
-      'form': form,
-      'order': order,
-      'products': products,
-  }
-  return render(request, 'payorder.html', context)
+  return render(request, 'payorder.html')
 
 @login_required(login_url='login')
 def viewDashboard(request):
