@@ -1,7 +1,7 @@
 {% include 'header.html' %}
 {% block content %}
 <div class="w-screen h-screen top-0 bg-gray-100" id="glass" style="display:none; position: fixed"></div>
-<div style="position: fixed; top:0; right:0; display: none;" class="font-bold text-2xl bg-blue-700 px-4 py-2 rounded-lg m-4 hover:scale-105 hover:bg-blue-600 cursor-pointer duration-300 transform text-green-100" id="close" onclick="closeContainer()">Close</div>
+<div style="position: fixed; top:0; right:0; display: none;" class="font-bold text-2xl rounded-lg m-4 hover:scale-105 cursor-pointer duration-300 transform text-green-100" id="close" onclick="closeContainer()">❌</div>
 <h1 class="text-6xl font-bold text-center">Products</h1>
 <div class="flex flex-wrap items-center justify-center">
     {% for p in products %} 
