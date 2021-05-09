@@ -1,14 +1,21 @@
-How to setup.
-Requirements:
+# Pronto Project
 
-Python 3+
-Pip (Latest Recommended)
-1.) Run pip install -f requirements.txt
+A full stack ecommerce web application mainly made to sell virtual / physical goods with tracking.
 
-2.) Run python manage.py makemigrations
+<img src="https://kobi.lol/assets/pronto.webp" alt="Pronto" />
 
-3.) Run python manage.py migrate
+# Technology Used
 
-4.) Run python manage.py runserver
+- Django
+- TailwindCSS
+- HTML5
+- CSS3
+- JavaScript
 
-You're Done!
+# Noteable Features
+
+- Order tracking / management
+- Automated Purchases
+- User authentication / management
+- Dashboard
+- Responsive Design
