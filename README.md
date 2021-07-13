@@ -2,8 +2,7 @@
 
 A full stack web application made for the purpose of e-commerce selling a virtual good or physical good.
 
-- [Live Preview](https://pronto.kobi.lol)
-- [My Website](https://kobi.lol)
+[Live Preview](https://pronto.kobi.lol) [My Website](https://kobi.lol)
 
 ## Technologies Used
 
